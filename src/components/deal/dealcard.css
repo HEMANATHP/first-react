@@ -1,0 +1,191 @@
+    #dealouterdiv{
+        display: flex;
+        justify-content: space-between;
+        /* border: 2px solid red; */
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    #leftdiv{
+        /* border: 2px solid black; */
+        padding: 70px 38px;
+        display: flex;
+        flex-direction: row-reverse;
+        flex: 1;
+        background:#e6e5e4dc;
+    }
+    #leftfstinner{
+        padding: 20px;
+        background:#8f614d ;
+    }
+    #leftsecinner{
+        border: 1px solid rgb(194, 184, 166);
+        /* padding: 140px; */
+    }
+    #leftdivcontent h4{
+        color: white;
+        font-size: 18px;
+        padding: 35px;
+    }
+    #leftdivcontent h2{
+        color: aliceblue;
+        font-size: 50px;
+        padding: 0px 30px 20px 30px;
+    }
+    #leftdivcontent button{
+        padding: 15px 35px;
+        margin:0px 35px 35px 35px ;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    #rightdiv{
+        flex: 1;
+        background-image: url("https://framerusercontent.com/images/hQTt9osnaDrAOMaXRDqCvasgs1E.png?width=1700&height=958");
+        background-size:cover;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    .rightdivouter{
+        padding: 25px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background:white;
+        opacity: .6;
+        position: relative;
+    }
+    .rightdivinner{
+        padding: 8px ;
+        background:#8f614d ;
+        border-radius: 50%;
+    }
+    .square{
+      content: "";
+      /* border: 2px solid red;  */
+      padding: 10px;
+      position: absolute;
+      bottom: 115%;
+      transform: rotate(45deg);
+      background: white;
+    }
+    .hoverdiv{
+      width: 150px;
+      position: absolute;
+      background: white;
+      bottom: 130%;
+      padding: 20px;
+      border-radius: 20px;
+    }
+    /* =========================
+   Tablet View
+========================= */
+@media (max-width: 1024px) {
+
+  #dealouterdiv{
+    flex-direction: column;
+  }
+
+  #leftdiv{
+    padding: 50px 25px;
+  }
+
+  #leftdivcontent h2{
+    font-size: 40px;
+  }
+
+  #rightdiv{
+    min-height: 400px;
+    padding: 30px;
+  }
+}
+
+
+/* =========================
+   Mobile View
+========================= */
+@media (max-width: 768px) {
+
+  #dealouterdiv{
+    flex-direction: column;
+  }
+
+  #leftdiv{
+    flex-direction: column;
+    padding: 30px 15px;
+    text-align: center;
+  }
+
+  #leftfstinner{
+    width: 100%;
+  }
+
+  #leftsecinner{
+    width: 100%;
+  }
+
+  #leftdivcontent h4{
+    font-size: 16px;
+    padding: 20px;
+  }
+
+  #leftdivcontent h2{
+    font-size: 30px;
+    padding: 0 15px 15px;
+  }
+
+  #leftdivcontent button{
+    margin: 20px auto;
+    display: block;
+    padding: 12px 25px;
+    font-size: 16px;
+  }
+
+  #rightdiv{
+    min-height: 300px;
+    padding: 20px;
+    background-position: center;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .rightdivouter{
+    padding: 18px;
+  }
+
+  .rightdivinner{
+    padding: 6px;
+  }
+}
+
+
+/* =========================
+   Small Mobile
+========================= */
+@media (max-width: 480px) {
+
+  #leftdivcontent h4{
+    font-size: 14px;
+  }
+
+  #leftdivcontent h2{
+    font-size: 24px;
+    line-height: 1.3;
+  }
+
+  #leftdivcontent button{
+    width: 100%;
+    max-width: 250px;
+  }
+
+  #rightdiv{
+    min-height: 250px;
+  }
+
+  .rightdivouter{
+    padding: 14px;
+  }
+
+  .rightdivinner{
+    padding: 5px;
+  }
+}

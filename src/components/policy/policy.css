@@ -1,0 +1,94 @@
+#policycards{
+    display: flex;
+    justify-content: space-around;
+    margin: 50px 0px;
+}
+.policy-card{
+    gap: 20px;
+    display:flex;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+    margin: 60px 0px;
+}
+.icondiv i{
+    font-size:50px; 
+    color: #8f614d;
+}
+.content p{
+    color:gray;
+    font-size: 15px;
+}
+
+/* =========================
+   Tablet View
+========================= */
+@media (max-width: 1024px) {
+
+  #policycards{
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 0 20px;
+  }
+
+  .policy-card{
+    width: 45%;
+    margin: 20px 0;
+  }
+}
+
+
+/* =========================
+   Mobile View
+========================= */
+@media (max-width: 768px) {
+
+  #policycards{
+    flex-direction: column;
+    align-items: center;
+    margin: 30px 0;
+  }
+
+  .policy-card{
+    width: 90%;
+    margin: 15px 0;
+    gap: 15px;
+  }
+
+  .icondiv i{
+    font-size: 40px;
+  }
+
+  .content h3{
+    font-size: 18px;
+  }
+
+  .content p{
+    font-size: 14px;
+  }
+}
+
+
+/* =========================
+   Small Mobile
+========================= */
+@media (max-width: 480px) {
+
+  .policy-card{
+    flex-direction: column;
+    text-align: center;
+    width: 95%;
+  }
+
+  .icondiv i{
+    font-size: 35px;
+  }
+
+  .content h3{
+    font-size: 16px;
+  }
+
+  .content p{
+    font-size: 13px;
+  }
+}

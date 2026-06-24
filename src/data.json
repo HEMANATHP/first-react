@@ -1,0 +1,107 @@
+{
+    "policy": [
+        {
+            "title": "Free Delivery",
+            "description": "Free shipping on all order",
+            "icon": "fa-solid fa-truck-fast"
+        },
+        {
+            "title": "Money Return",
+            "description": "Back guarantee under 7 day",
+            "icon":"fa-solid fa-money-bill-1-wave"
+        },
+        {
+            "title": "Online Support 24/7",
+            "description": "Support online 24 hours a day",
+            "icon":"fa-solid fa-headset"
+        },
+        {
+            "title": "Reliable",
+            "description": "Trusted by 1000+ brands",
+            "icon":"fa-solid fa-hand-holding-droplet"
+        }
+    ],
+    "showcase":[
+        {
+            "offer":"GET 30% OFF",
+            "title":"Wicker Hanging Chairs",
+            "image":"https://static.vecteezy.com/system/resources/thumbnails/055/614/973/small/wicker-hanging-chair-with-pillows-free-png.png"
+        },
+        {
+            "offer":"GET 10% OFF",
+            "title":"Brasslegged Armchairs",
+            "image":"https://png.pngtree.com/png-vector/20260329/ourmid/pngtree-teal-upholstered-chair-with-gold-legs-png-image_19018245.webp"
+        }
+    ],
+    "featuredproducts":[
+  {
+    "id":1,
+    "title":"Brasslegged Armchair",
+    "price":"USD 1.00",
+    "description":"Elegant armchair with brass legs and soft upholstery, perfect for modern living spaces.",
+    "image":"https://png.pngtree.com/png-vector/20260329/ourmid/pngtree-teal-upholstered-chair-with-gold-legs-png-image_19018245.webp"
+  },
+  {
+    "id":2,
+    "title":"Luxury Throne Chair",
+    "price":"USD 2.00",
+    "description":"A royal-style throne chair featuring premium cushioning and luxurious detailing.",
+    "image":"https://png.pngtree.com/png-vector/20250724/ourmid/pngtree-regal-white-and-gold-tufted-throne-chair-high-resolution-image-showcasing-png-image_16655689.webp"
+  },
+  {
+    "id":3,
+    "title":"Modern Lounge Chair",
+    "price":"USD 3.00",
+    "description":"Comfortable lounge chair with a sleek contemporary design for relaxation and style.",
+    "image":"https://static.vecteezy.com/system/resources/thumbnails/040/452/829/small/ai-generated-armchair-furniture-isolated-on-transparent-background-free-png.png"
+  },
+  {
+    "id":4,
+    "title":"Classic Wooden Chair",
+    "price":"USD 4.00",
+    "description":"Timeless wooden chair crafted for durability, comfort, and everyday use.",
+    "image":"https://png.pngtree.com/png-vector/20250724/ourmid/pngtree-regal-white-and-gold-tufted-throne-chair-high-resolution-image-showcasing-png-image_16655689.webp"
+  },
+  {
+    "id":5,
+    "title":"Premium Accent Chair",
+    "price":"USD 5.00",
+    "description":"Stylish accent chair designed to enhance the beauty of any room décor.",
+    "image":"https://png.pngtree.com/png-vector/20260329/ourmid/pngtree-teal-upholstered-chair-with-gold-legs-png-image_19018245.webp"
+  },
+  {
+    "id":6,
+    "title":"Designer Armchair",
+    "price":"USD 6.00",
+    "description":"A sophisticated designer armchair combining luxury, comfort, and modern aesthetics.",
+    "image":"https://static.vecteezy.com/system/resources/thumbnails/040/452/829/small/ai-generated-armchair-furniture-isolated-on-transparent-background-free-png.png"
+  },
+  {
+    "id":7,
+    "title":"Velvet Lounge Chair",
+    "price":"USD 7.00",
+    "description":"Soft velvet-finished lounge chair offering exceptional comfort and elegance.",
+    "image":"https://png.pngtree.com/png-vector/20260329/ourmid/pngtree-teal-upholstered-chair-with-gold-legs-png-image_19018245.webp"
+  },
+  {
+    "id":8,
+    "title":"Royal Seating Chair",
+    "price":"USD 8.00",
+    "description":"Premium seating chair inspired by royal interiors with intricate detailing.",
+    "image":"https://png.pngtree.com/png-vector/20250724/ourmid/pngtree-regal-white-and-gold-tufted-throne-chair-high-resolution-image-showcasing-png-image_16655689.webp"
+  },
+  {
+    "id":9,
+    "title":"Contemporary Chair",
+    "price":"USD 9.00",
+    "description":"Minimalist contemporary chair designed to complement modern homes and offices.",
+    "image":"https://static.vecteezy.com/system/resources/thumbnails/040/452/829/small/ai-generated-armchair-furniture-isolated-on-transparent-background-free-png.png"
+  }
+]
+}
+
+
+
+
+
+
