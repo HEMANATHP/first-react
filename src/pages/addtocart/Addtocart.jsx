@@ -1,9 +1,9 @@
-import React from "react";
 import "./addtocart.css";
 // import { useContext } from "react";
 // import ProductContext from "../../context/ProductContext";
 import { useNavigate } from "react-router-dom";
 import useProductStore from "../../store/productstore";
+import { toast } from "react-toastify";
 
 const Addtocart = () => {
   const navigate = useNavigate();
@@ -42,9 +42,14 @@ const Addtocart = () => {
       return acc + price * item.quantity;
     }, 0);
   };
+  const checkandnavigate = ()=>{
 
-
-
+    if([...cartItems].length === 0){
+      toast.error("ADD PROUCTS TO CONTINUE...")
+      return
+    }
+    navigate("/checkout")
+  }
   const subtotal = totalPrice();
   const Shipping = cartItems.length > 0 ? 10 : 0;
   const total = subtotal + Shipping;
@@ -93,7 +98,7 @@ const Addtocart = () => {
         <p>Shipping: USD {Shipping.toFixed(2)}</p>
         <h3>Total: USD {total.toFixed(2)}</h3>
 
-        <button className="checkout-btn" onClick={() => navigate("/checkout")}>
+        <button className="checkout-btn" onClick={() => checkandnavigate()}>
           Proceed To Checkout
         </button>
       </div>

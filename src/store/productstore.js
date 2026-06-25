@@ -41,6 +41,8 @@ const useProductStore = create(
 
     updatecartitems : (items)=> set({cartItems:items,}),
 
+    clearCart:()=> set({cartItems:[]})
+
 }),
 {
     name:"product-storage"

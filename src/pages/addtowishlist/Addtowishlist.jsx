@@ -1,6 +1,5 @@
-  import React, { useContext } from "react";
+  // import React, { useContext } from "react";
   import "./addtowishlist.css";
-  import { useState } from "react";
   import useProductStore from "../../store/productstore";
   // import ProductContext from "../../context/ProductContext";
 
@@ -29,7 +28,7 @@
         }
         <div className="wishlist-items" >
         {
-          wishlistItems.map((items,index)=>{
+          wishlistItems.map((items)=>{
         return(
           <div className="wishlist-item" key={items.id
           }>

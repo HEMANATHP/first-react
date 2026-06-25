@@ -4,97 +4,34 @@ import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useNavigate } from "react-router-dom";
 
 import useProductStore from "../../store/productstore";
 // import ProductContext from "../../context/ProductContext";
 import useCheckoutStore from "../../store/checkoutstore";
 
-  const checkoutSchema = z.object({
-    name: z.string().min(3, "name should be alteast 3 character"),
-    email: z.string().email("enter a valid email"),
-    phoneno: z.string().regex(/^\d{10}$/, "enter a valid mobile number"),
-    address: z.string().regex(/^[^@#$%&*^()]+$/, "enter a valid Address"),
-    city: z.string().regex(/^[a-zA-Z]+$/, "Enter a valid city"),
-    pincode: z.string().regex(/^\d{6}$/, "Enter a valid pincode"),
-    paymentmethod: z.string().min(1, "choose a payment method"),
-  });
+const checkoutSchema = z.object({
+  name: z.string().min(3, "name should be alteast 3 character"),
+  email: z.string().email("enter a valid email"),
+  phoneno: z.string().regex(/^\d{10}$/, "enter a valid mobile number"),
+  address: z.string().regex(/^[^@#$%&*^()]+$/, "enter a valid Address"),
+  city: z.string().regex(/^[a-zA-Z]+$/, "Enter a valid city"),
+  pincode: z.string().regex(/^\d{6}$/, "Enter a valid pincode"),
+  paymentmethod: z.string().min(1, "choose a payment method"),
+});
 
 const Checkout = () => {
   // const {cartItems}= useContext(ProductContext)
 
+  const navigate = useNavigate()
+
   const cartItems = useProductStore((state) => state.cartItems);
+
+  const clearCart = useProductStore((state) => state.clearCart);
 
   // const allCheckoutData = useCheckoutStore((state) => state.allCheckoutData);
 
   const addCheckoutData = useCheckoutStore((state) => state.addCheckoutData);
-
-  // const [checkoutData, SetcheckoutData] = useState({
-  //   name: "",
-  //   email: "",
-  //   phoneno: "",
-  //   address: "",
-  //   city: "",
-  //   pincode: "",
-  //   paymentmethod: "",
-  // });
-
-  // const nameregex = /^[a-zA-z\s]{3,30}$/;
-  // const emailregex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  // const phonenoregex = /^\d{10}$/;
-  // const addressregex = /^[^@#$%&*^()]+$/;
-  // const cityregrex = /^[a-zA-Z]+$/;
-  // const pincoderegrex = /^\d{6}$/;
-
-  // const handlechange = (e) => {
-  //   SetcheckoutData({
-  //     ...checkoutData,
-  //     [e.target.name]: e.target.value,
-  //   });
-  // };
-
-  // const handleclick = (e) => {
-  //   e.preventDefault();
-  //   if (!nameregex.test(checkoutData.name)) {
-  //     toast.error("enter vaild name")
-  //     return;
-  //   }
-  //   if (!emailregex.test(checkoutData.email)) {
-  //     toast.error("enter a valid email");
-  //     return;
-  //   }
-  //   if (!phonenoregex.test(checkoutData.phoneno)) {
-  //     toast.error("enter a valid mobile number");
-  //     return;
-  //   }
-  //   if (!addressregex.test(checkoutData.address)) {
-  //     toast.error("enter valid address ");
-  //     return;
-  //   }
-  //   if (!cityregrex.test(checkoutData.city)) {
-  //     toast.error("enter a vaild city");
-  //     return;
-  //   }
-  //   if (!pincoderegrex.test(checkoutData.pincode)) {
-  //     toast.error("enter a valid pincode");
-  //     return;
-  //   }
-  //   if(checkoutData.paymentmethod === ""){
-  //     toast.info("choose a payment method")
-  //     return
-  //   }
-  //   addCheckoutData(checkoutData);
-  //   SetcheckoutData({
-  //     name: "",
-  //     email: "",
-  //     phoneno: "",
-  //     address: "",
-  //     city: "",
-  //     pincode: "",
-  //     paymentmethod: "",
-  //   });
-  //    toast.success("order placed successfully")
-  // };
-
 
   const {
     register,
@@ -110,13 +47,19 @@ const Checkout = () => {
   });
 
   const onsubmit = (data) => {
-    console.log(data);
-    addCheckoutData(data);
-    
+    if ([...cartItems].length === 0) {
+      toast.error("Order can't be placed. Add products to continue.")
+      return
+    }
+    const orderRecord = {
+      ...data,
+      item: [...cartItems],
+      totalPrice: total,
+      orderedAT: new Date().toISOString()
+    }
+    addCheckoutData(orderRecord);
     toast.success("Order Placed Succesfully");
-
-  console.log(useCheckoutStore.getState());
-
+    clearCart();
     reset();
   };
 
@@ -145,6 +88,18 @@ const Checkout = () => {
     }, 0);
   };
 
+  if (cartItems.length === 0) {
+    return (
+      <div className="checkout-empty-container" style={{ textAlign: "center", padding: "50px" }}>
+        <h2>Your cart is empty! 🛒</h2>
+        <p>Please add some products to your cart before proceeding to checkout.</p>
+        <button onClick={() => navigate("/")} style={{ marginTop: "20px", padding: "10px 20px", cursor: "pointer" }}>
+          Go to Shop
+        </button>
+      </div>
+    );
+  }
+
   const subtotal = totalPrice();
   const Shipping = cartItems.length > 0 ? 10 : 0;
   const total = subtotal + Shipping;
@@ -159,10 +114,6 @@ const Checkout = () => {
             type="text"
             placeholder="Full Name"
             {...register("name")}
-            // required
-            // value={checkoutData.name}
-            // onChange={handlechange}
-            // name="name"
           />
 
           {errors.name && (
@@ -249,6 +200,7 @@ const Checkout = () => {
       </div>
     </div>
   );
-};
+}
+
 
 export default Checkout;
