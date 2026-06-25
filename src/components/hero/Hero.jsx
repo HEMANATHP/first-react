@@ -16,7 +16,7 @@ const Hero = () => {
 
   const buttonhandler = (button) => {
     if (button === "BUY NOW") {
-      navigate("/checkout");
+      navigate("/shop");
     }
     if (button === "VIEW CART") {
       navigate("/cart");

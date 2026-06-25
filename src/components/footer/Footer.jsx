@@ -18,7 +18,7 @@ const Footer = () => {
           <h3>Quick Links</h3>
           <ul>
             <li onClick={() => navigate("/")}>Home</li>
-            <li>Shop</li>
+            <li onClick={() => navigate("/shop")}>Shop</li>
             <li onClick={() => navigate("/wishlist")}>Wishlist</li>
             <li onClick={() => navigate("/cart")}>Cart</li>
           </ul>
@@ -27,7 +27,7 @@ const Footer = () => {
         <div className="footer-section">
           <h3>Customer Service</h3>
           <ul>
-            <li>Contact Us</li>
+            <li onClick={() => navigate("/contact")}>Contact Us</li>
             <li>FAQ</li>
             <li>Shipping Policy</li>
             <li>Return Policy</li>

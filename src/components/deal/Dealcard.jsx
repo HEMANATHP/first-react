@@ -17,7 +17,7 @@ const Dealcard = () => {
               <h2>Live Furniture</h2>
               <h2>Your Love</h2>
               <button
-              onClick={()=>navigate("/checkout")}>
+              onClick={()=>navigate("/shop")}>
                 BUY NOW <i className="fa-solid fa-chevron-right"></i>
               </button>
             </div>

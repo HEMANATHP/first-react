@@ -14,7 +14,7 @@ const Showcase = () => {
               <p>{item.offer}</p>
               <h3>{item.title}</h3>
               <button
-              onClick={()=>navigate("/checkout")}> BUY NOW</button>
+              onClick={()=>navigate("/shop")}> BUY NOW</button>
             </div>
             <div className='imgdiv'>
               <img src={item.image} alt="furniture" />

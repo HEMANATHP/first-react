@@ -33,6 +33,10 @@ const Nav = () => {
         navigate("/contact")
         break;
       }
+      case "Shop":{
+        navigate("/shop")
+        break;
+      }
     }
   }
   const filterproduct = data.featuredproducts.filter((item) => {
