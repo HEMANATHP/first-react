@@ -9,12 +9,22 @@ import useProductStore from "../../store/productstore";
 // import ProductContext from "../../context/ProductContext";
 import useCheckoutStore from "../../store/checkoutstore";
 
+  const checkoutSchema = z.object({
+    name: z.string().min(3, "name should be alteast 3 character"),
+    email: z.string().email("enter a valid email"),
+    phoneno: z.string().regex(/^\d{10}$/, "enter a valid mobile number"),
+    address: z.string().regex(/^[^@#$%&*^()]+$/, "enter a valid Address"),
+    city: z.string().regex(/^[a-zA-Z]+$/, "Enter a valid city"),
+    pincode: z.string().regex(/^\d{6}$/, "Enter a valid pincode"),
+    paymentmethod: z.string().min(1, "choose a payment method"),
+  });
+
 const Checkout = () => {
   // const {cartItems}= useContext(ProductContext)
 
   const cartItems = useProductStore((state) => state.cartItems);
 
-  const allCheckoutData = useCheckoutStore((state) => state.allCheckoutData);
+  // const allCheckoutData = useCheckoutStore((state) => state.allCheckoutData);
 
   const addCheckoutData = useCheckoutStore((state) => state.addCheckoutData);
 
@@ -85,15 +95,6 @@ const Checkout = () => {
   //    toast.success("order placed successfully")
   // };
 
-  const checkoutSchema = z.object({
-    name: z.string().min(3, "name should be alteast 3 character"),
-    email: z.string().email("enter a valid email"),
-    phoneno: z.string().regex(/^\d{10}$/, "enter a valid mobile number"),
-    address: z.string().regex(/^[^@#$%&*^()]+$/, "enter a valid Address"),
-    city: z.string().regex(/^[a-zA-Z]+$/, "Enter a valid city"),
-    pincode: z.string().regex(/^\d{6}$/, "Enter a valid pincode"),
-    paymentmethod: z.string().min(1, "choose a payment method"),
-  });
 
   const {
     register,
@@ -111,8 +112,10 @@ const Checkout = () => {
   const onsubmit = (data) => {
     console.log(data);
     addCheckoutData(data);
-
+    
     toast.success("Order Placed Succesfully");
+
+  console.log(useCheckoutStore.getState());
 
     reset();
   };
