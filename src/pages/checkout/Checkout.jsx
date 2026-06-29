@@ -1,4 +1,3 @@
-// import React, { useContext, useState } from "react";
 import "./checkout.css";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
@@ -7,8 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
 
 import useProductStore from "../../store/productstore";
-// import ProductContext from "../../context/ProductContext";
 import useCheckoutStore from "../../store/checkoutstore";
+import { useCart } from "../../hooks/useCart";
 
 const checkoutSchema = z.object({
   name: z.string().min(3, "name should be alteast 3 character"),
@@ -21,15 +20,9 @@ const checkoutSchema = z.object({
 });
 
 const Checkout = () => {
-  // const {cartItems}= useContext(ProductContext)
-
   const navigate = useNavigate()
 
-  const cartItems = useProductStore((state) => state.cartItems);
-
-  const clearCart = useProductStore((state) => state.clearCart);
-
-  // const allCheckoutData = useCheckoutStore((state) => state.allCheckoutData);
+  const {cartItems,clearCart,subtotal,shipping,total} = useCart()
 
   const addCheckoutData = useCheckoutStore((state) => state.addCheckoutData);
 
@@ -81,28 +74,17 @@ const Checkout = () => {
     }
   };
 
-  const totalPrice = () => {
-    return cartItems.reduce((acc, item) => {
-      const price = parseFloat(item.price.replace("USD", ""));
-      return acc + price * item.quantity;
-    }, 0);
-  };
-
   if (cartItems.length === 0) {
     return (
       <div className="checkout-empty-container" style={{ textAlign: "center", padding: "50px" }}>
         <h2>Your cart is empty! 🛒</h2>
         <p>Please add some products to your cart before proceeding to checkout.</p>
-        <button onClick={() => navigate("/")} style={{ marginTop: "20px", padding: "10px 20px", cursor: "pointer" }}>
+        <button onClick={() => navigate("/shop")} style={{ marginTop: "20px", padding: "10px 20px", cursor: "pointer" }}>
           Go to Shop
         </button>
       </div>
     );
   }
-
-  const subtotal = totalPrice();
-  const Shipping = cartItems.length > 0 ? 10 : 0;
-  const total = subtotal + Shipping;
 
   return (
     <div className="checkout-container">
@@ -145,17 +127,19 @@ const Checkout = () => {
           )}
 
           <div className="row">
-            <input type="text" placeholder="City" {...register("city")} />
+            <div>
+              <input type="text" placeholder="City" {...register("city")} />
+              {errors.city && (
+                <p className="errorindication">{errors.city.message}</p>
+              )}
+            </div>
 
-            <input type="text" placeholder="Pincode" {...register("pincode")} />
-          </div>
-          <div className="row1">
-            {errors.city && (
-              <p className="errorindication">{errors.city.message}</p>
-            )}
-            {errors.pincode && (
-              <p className="errorindication pincode">{errors.pincode.message}</p>
-            )}
+            <div>
+              <input type="text" placeholder="Pincode" {...register("pincode")} />
+              {errors.pincode && (
+                <p className="errorindication pincode">{errors.pincode.message}</p>
+              )}
+            </div>
           </div>
 
           <select
@@ -177,7 +161,7 @@ const Checkout = () => {
           <button type="submit">Place Order</button>
         </form>
       </div>
-
+          
       <div className="checkout-right">
         <h2>Order Summary</h2>
 
@@ -188,7 +172,7 @@ const Checkout = () => {
 
         <div className="summary-item">
           <span>Shipping</span>
-          <span> USD {Shipping}</span>
+          <span> USD {shipping}</span>
         </div>
 
         <hr />

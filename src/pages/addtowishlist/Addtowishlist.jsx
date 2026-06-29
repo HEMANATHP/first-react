@@ -1,14 +1,11 @@
-  // import React, { useContext } from "react";
   import "./addtowishlist.css";
   import useProductStore from "../../store/productstore";
-  // import ProductContext from "../../context/ProductContext";
+import { useCart } from "../../hooks/useCart";
 
   const Addtowishlist = () => {
 
-    // const {wishlistItems,setwishlistItems,cartItems,setCartItems} = useContext(ProductContext)
-
+    const{addtocart}= useCart();
     const wishlistItems = useProductStore((state)=>state.wishlistItems)
-    const addtocart = useProductStore((state)=>state.addtocart)
     const removefromwishlists = useProductStore((state)=>state.removefromwishlists)
 
     const Addtocart = (product)=>{

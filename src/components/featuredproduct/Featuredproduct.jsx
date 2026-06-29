@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./featured-products.css";
 import data from "../../data.json";
-// import { useContext } from "react";
-// import ProductContext from "../../context/ProductContext";
 import { useNavigate } from "react-router-dom";
 import useProductStore from "../../store/productstore";
+import { useCart } from "../../hooks/useCart";
 
 const { featuredproducts } = data;
 
@@ -45,70 +44,19 @@ const Featuredproduct = () => {
 
   const visibleproduct = featuredproducts.slice(currentindex, currentindex + 4);
 
-  // const { cartItems, setCartItems,wishlistItems,setwishlistItems } = useContext(ProductContext); //////
-
-  const cartItems = useProductStore((state)=>state.cartItems)
+  const {cartItems,addtocart}=useCart()
   const wishlistItems = useProductStore((state)=>state.wishlistItems)
-  const addtocart = useProductStore((state)=>state.addtocart)
-  const addtowishlist = useProductStore((state)=> state.addtowishlist)
 
-  const addToCart = (product)=>{
-    addtocart(product);
-    navigate("/cart")
-  }
 
   const addToWishlist = (product)=>{
     addtowishlist(product);
     navigate("/wishlist")
   }
-  // const addToCart = (product) => {
-  //   setCartItems((prev) => {
-  //     const existing = prev.find((item)=>
-
-  //       item.id === product.id
-  //     )
-
-  //     if(existing){
-  //       return prev.map((item)=>
-  //         item.id === product.id ? {...item,quantity:item.quantity+1} : item
-  //       )
-  //     }
-
-  //     return[
-  //       ...prev,
-  //       {
-  //         ...product,quantity:1 
-  //       }
-  //     ]
-  //   });
-  //   navigate("/cart")
-  // };
-  // const addToWishlist = (product)=>{
-  //   setwishlistItems((prev)=>{
-  //     const existing = prev.find((item)=>
-
-  //       item.id === product.id
-  //     )
-
-  //     if(existing){
-  //       return prev.map((item)=>
-  //         item.id === product.id ? {...item,quantity:item.quantity+1} : item
-  //       )
-  //     }
-
-  //     return[
-  //       ...prev,
-  //       {
-  //         ...product,quantity:1 
-  //       }
-  //     ]
-  //   })
-  // }
-
   const handleiconclick = (action, product) => {
     switch (action) {
       case "cart": {
-        addToCart(product);
+        addtocart(product);
+        navigate("/cart")
         break;
       }
       case "view": {

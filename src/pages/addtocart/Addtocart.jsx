@@ -1,58 +1,32 @@
 import "./addtocart.css";
-// import { useContext } from "react";
-// import ProductContext from "../../context/ProductContext";
 import { useNavigate } from "react-router-dom";
-import useProductStore from "../../store/productstore";
 import { toast } from "react-toastify";
+import { useCart } from "../../hooks/useCart";
 
 const Addtocart = () => {
   const navigate = useNavigate();
-
-  // const { cartItems,setCartItems } = useContext(ProductContext);
-
-  const cartItems = useProductStore((state) => state.cartItems);
-  // const addtocart = useProductStore((state)=>state.addtocart)
-  const removefromcart = useProductStore((state) => state.removefromcart);
-  const updatecartitems = useProductStore((state) => state.updatecartitems);
+  
+  const { cartItems,
+    removefromcart,
+    increment,
+    decrement,
+    subtotal,
+    shipping,
+    total } = useCart()
 
   const removeItem = (id) => {
     removefromcart(id);
   };
 
-  const increment = (id) => {
-    const update = cartItems.map((item) =>
-      item.id === id ? { ...item, quantity: item.quantity + 1 } : item,
-    );
+  const checkandnavigate = () => {
 
-    updatecartitems(update);
-  };
-  const decrement = (id) => {
-    const update = cartItems
-      .map((item) =>
-        item.id === id ? { ...item, quantity: item.quantity - 1 } : item,
-      )
-      .filter((item) => item.quantity > 0);
-
-    updatecartitems(update);
-  };
-
-  const totalPrice = () => {
-    return cartItems.reduce((acc, item) => {
-      const price = parseFloat(item.price.replace("USD", ""));
-      return acc + price * item.quantity;
-    }, 0);
-  };
-  const checkandnavigate = ()=>{
-
-    if([...cartItems].length === 0){
+    if ([...cartItems].length === 0) {
       toast.error("ADD PROUCTS TO CONTINUE...")
       return
     }
     navigate("/checkout")
   }
-  const subtotal = totalPrice();
-  const Shipping = cartItems.length > 0 ? 10 : 0;
-  const total = subtotal + Shipping;
+
 
   return (
     <div className="cart-container">
@@ -95,7 +69,7 @@ const Addtocart = () => {
       <div className="cart-summary">
         <h2>Order Summary</h2>
         <p>Subtotal: USD {subtotal.toFixed(2)}</p>
-        <p>Shipping: USD {Shipping.toFixed(2)}</p>
+        <p>Shipping: USD {shipping.toFixed(2)}</p>
         <h3>Total: USD {total.toFixed(2)}</h3>
 
         <button className="checkout-btn" onClick={() => checkandnavigate()}>

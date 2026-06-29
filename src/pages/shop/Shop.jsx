@@ -3,13 +3,14 @@ import data from "../../data.json";
 import { useNavigate } from "react-router-dom";
 import useProductStore from "../../store/productstore";
 import "./shop.css"
+import { useCart } from "../../hooks/useCart";
 
 const { featuredproducts } = data;
 
 const Shop = () => {
   const navigate = useNavigate();
 
-  const addtocart = useProductStore((state) => state.addtocart);
+  const {addtocart}=useCart()
   const addtowishlist = useProductStore((state) => state.addtowishlist);
 
   const handleCart = (product) => {
