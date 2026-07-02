@@ -4,8 +4,9 @@ import { toast } from "react-toastify";
 import { useCart } from "../../hooks/useCart";
 
 const Addtocart = () => {
+
   const navigate = useNavigate();
-  
+
   const { cartItems,
     removefromcart,
     increment,

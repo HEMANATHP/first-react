@@ -5,8 +5,11 @@ import Featuredproduct from "../../components/featuredproduct/Featuredproduct";
 import Dealcard from "../../components/deal/Dealcard";
 import Hero from "../../components/hero/Hero";
 import Footer from "../../components/footer/Footer";
+import useLoginStore from "../../store/loginstore";
 
 const Home = () => {
+  const {auth} = useLoginStore()
+  console.log(auth?.username)
   return (
     <>
       <Hero />
@@ -15,7 +18,7 @@ const Home = () => {
       <Featuredproduct />
       <Dealcard />
       <Footer/>
-    </>
+      </>
   );
 };
 

@@ -255,3 +255,60 @@ nav{
     font-size: 18px;
   }
 }
+
+#profile {
+    position: relative;
+    cursor: pointer;
+    color: white;
+}
+
+#profile i {
+    font-size: 22px;
+}
+
+.profile-dropdown {
+    position: absolute;
+    right: 0;
+    top: 40px;
+
+    width: 220px;
+
+    background: white;
+    color: black;
+
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.2);
+
+    padding: 15px;
+
+    z-index: 1000;
+}
+
+.profile-info h4{
+    margin-bottom:5px;
+}
+
+.profile-info p{
+    font-size:14px;
+    color:gray;
+    word-break: break-word;
+}
+
+.logout-btn{
+    margin-top:15px;
+    width:100%;
+    padding:10px;
+
+    border:none;
+    border-radius:8px;
+
+    background:#8f614d;
+    color:white;
+
+    cursor:pointer;
+}
+
+.logout-btn:hover{
+    background:#744d3d;
+}
+

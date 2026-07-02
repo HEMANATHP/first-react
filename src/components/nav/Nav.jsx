@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import "./nav.css";
 import data from "../../data.json";
+import useLoginStore from "../../store/loginstore";
 
-import { useNavigate,NavLink } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Nav = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const {auth,logoutAuth} = useLoginStore();
+
+  const [showProfile,setShowProfile] = useState(false)
 
   const [search, Setsearch] = useState("");
 
@@ -23,25 +28,31 @@ const Nav = () => {
   const topnavlist = ["English", "USD"];
   const bottomnavmenu = ["Home", "About", "Shop", "Pages", "Blog", "Contact"];
 
-  const handleclick=(li)=>{
-    switch(li){
-      case "Home":{
-        navigate("/")
+  const handleclick = (li) => {
+    switch (li) {
+      case "Home": {
+        navigate("/");
         break;
       }
-      case "Contact":{
-        navigate("/contact")
+      case "Contact": {
+        navigate("/contact");
         break;
       }
-      case "Shop":{
-        navigate("/shop")
+      case "Shop": {
+        navigate("/shop");
         break;
       }
     }
-  }
+  };
   const filterproduct = data.featuredproducts.filter((item) => {
     return item.title.toLowerCase().includes(search.toLowerCase());
   });
+
+  const handleLogOut = ()=>{
+    logoutAuth()
+    toast.success("Loged Out Successfully")
+    navigate("/login")
+  }
 
   return (
     <>
@@ -54,13 +65,28 @@ const Nav = () => {
           <h3>TAKE CARE OF YOUR Health 25% OFF USE CODE “ DOFIX03 ”</h3>
           <ul>
             {topnavlist.map((listitems, index) => {
-              return (
-                <li key={index}>
-                  {listitems} 
-                </li>
-              );
+              return <li key={index}>{listitems}</li>;
             })}
           </ul>
+          <div id="profile" onClick={() => setShowProfile(!showProfile)}>
+            <i className="fa-solid fa-user"></i>
+
+            {showProfile && (
+              <div className="profile-dropdown">
+                <div className="profile-info">
+                  <h4>
+                    {auth?.firstName} {auth?.lastName}
+                  </h4>
+                  <p>{auth?.email}</p>
+                </div>
+
+                <hr />
+
+                <button className="logout-btn"
+                onClick={handleLogOut}>Logout</button>
+              </div>
+            )}
+          </div>
         </div>
         <div className="bottomnav">
           <div id="logo">
@@ -74,7 +100,7 @@ const Nav = () => {
                   key={menuitem}
                   onMouseEnter={() => Setactivemenu(menuitem.toLowerCase())}
                   onMouseLeave={() => Setactivemenu(null)}
-                  onClick={()=>handleclick(menuitem)}
+                  onClick={() => handleclick(menuitem)}
                 >
                   {menuitem}
                   <div className="hidden"></div>
@@ -125,8 +151,7 @@ const Nav = () => {
             )}
           </div>
           <div className="commonicon">
-            <NavLink
-              to={"/cart"}>
+            <NavLink to={"/cart"}>
               <i className="fa-solid fa-cart-shopping"></i>
             </NavLink>
             <NavLink to={"/wishlist"}>
